@@ -1,4 +1,6 @@
 -- Initial query: retrieves all bookings with user, property, and payment details
+-- EXPLAIN
+
 SELECT 
     b.booking_id,
     b.check_in,
@@ -21,4 +23,7 @@ JOIN Properties p
     ON b.property_id = p.property_id
 LEFT JOIN Payments pay 
     ON b.booking_id = pay.booking_id
-ORDER BY b.check_in DESC;
+WHERE b.status = 'confirmed'              -- filter bookings
+  AND pay.status = 'successful'           -- filter payments
+  AND p.location = 'Lagos'                -- filter property loca
+
