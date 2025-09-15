@@ -1,10 +1,11 @@
 
 -- 1. Aggregation with `COUNT` + `GROUP BY`
 
-SELECT 
+SELECT  
     u.user_id,
     u.name,
-    COUNT(b.booking_id) AS total_bookings
+    COUNT(b.booking_id) AS total_bookings,
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS row_num
 FROM Users u
 LEFT JOIN Bookings b 
     ON u.user_id = b.guest_id
