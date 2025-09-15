@@ -43,3 +43,4 @@ SELECT
 FROM Users u
 FULL OUTER JOIN Bookings b 
     ON u.user_id = b.guest_id;
+ORDER BY u.name asc
